@@ -1,0 +1,15 @@
+#BSUB -G team215-grp
+#BSUB -J "random_split_single_organoid_adata"
+#BSUB -q normal
+#BSUB -n 1
+#BSUB -M 64G
+#BSUB -R "select[mem>64G] rusage[mem=64G]"
+#BSUB -o "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/out_random_split_single_organoid_adata_%J.log"
+#BSUB -e "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/err_random_split_single_organoid_adata_%J.log"
+#BSUB -cwd /lustre/scratch125/casm/team215mg/pg21_rotation/
+
+source /nfs/users/nfs_p/pg21/.bashrc
+conda init
+conda activate /nfs/users/nfs_p/pg21/miniforge3/envs/celldrift_git
+
+python /lustre/scratch125/casm/team215mg/pg21_rotation/scripts/draft_split_adata.py

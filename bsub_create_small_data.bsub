@@ -1,0 +1,15 @@
+#BSUB -G team283
+#BSUB -J "small_test_split_one_organoid"
+#BSUB -q normal
+#BSUB -n 1
+#BSUB -M 4G
+#BSUB -R "select[mem>4G] rusage[mem=4G]"
+#BSUB -o "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/out_small_test_split_one_organoid_%J.log"
+#BSUB -e "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/err_small_test_split_one_organoid_%J.log"
+#BSUB -cwd /lustre/scratch125/casm/team215mg/pg21_rotation/
+
+source /nfs/users/nfs_p/pg21/.bashrc
+conda init
+conda activate /nfs/users/nfs_p/pg21/miniforge3/envs/celldrift_git
+
+python /lustre/scratch125/casm/team215mg/pg21_rotation/scripts/import_cell_states_adata.py

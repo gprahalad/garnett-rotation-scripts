@@ -1,0 +1,16 @@
+#BSUB -G team215-grp
+#BSUB -J "gpu_hypetune"
+#BSUB -q gpu-normal
+#BSUB -n 4
+#BSUB -M 16G
+#BSUB -gpu "mode=shared:num=1:gmem=4G"
+#BSUB -R "select[mem>16G] rusage[mem=16G]"
+#BSUB -o "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/out_gpu_hypetune_%J.log"
+#BSUB -e "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/err_gpu_hypetune_%J.log"
+#BSUB -cwd /lustre/scratch125/casm/team215mg/pg21_rotation
+
+source /nfs/users/nfs_p/pg21/.bashrc
+conda init
+conda activate /lustre/scratch125/casm/team215mg/pg21_rotation/software/miniforge3/envs/xgboost
+
+python /lustre/scratch125/casm/team215mg/pg21_rotation/scripts/gpu_hypetune.py

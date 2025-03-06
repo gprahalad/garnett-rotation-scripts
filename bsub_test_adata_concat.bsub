@@ -1,0 +1,15 @@
+#BSUB -G team215-grp
+#BSUB -J "testing_adata_concat"
+#BSUB -q normal
+#BSUB -n 1
+#BSUB -M 200
+#BSUB -R "select[mem>200] rusage[mem=200]"
+#BSUB -o "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/out_testing_adata_concat_%J.log"
+#BSUB -e "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/err_testing_adata_concat_%J.log"
+#BSUB -cwd /lustre/scratch125/casm/team215mg/pg21_rotation/test_concat
+
+source /nfs/users/nfs_p/pg21/.bashrc
+conda init
+conda activate /nfs/users/nfs_p/pg21/miniforge3/envs/celldrift_git
+
+python /lustre/scratch125/casm/team215mg/pg21_rotation/scripts/testing_anndata_concat.py -working_dir /lustre/scratch125/casm/team215mg/pg21_rotation/test_concat/

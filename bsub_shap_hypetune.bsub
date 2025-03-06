@@ -1,0 +1,15 @@
+#BSUB -G team215-grp
+#BSUB -J "shap_hypetune"
+#BSUB -q week
+#BSUB -n 6
+#BSUB -M 140G
+#BSUB -R "select[mem>140G] rusage[mem=140G]"
+#BSUB -o "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/out_shap_hypetune_%J.log"
+#BSUB -e "/lustre/scratch125/casm/team215mg/pg21_rotation/logs/err_shap_hypetune_%J.log"
+#BSUB -cwd /lustre/scratch125/casm/team215mg/pg21_rotation
+
+source /nfs/users/nfs_p/pg21/.bashrc
+conda init
+conda activate /lustre/scratch125/casm/team215mg/pg21_rotation/software/miniforge3/envs/xgboost
+
+python /lustre/scratch125/casm/team215mg/pg21_rotation/scripts/new_shap_hypetune.py
